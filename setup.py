@@ -9,8 +9,6 @@ setup(
     author="Martin Hunt",
     author_email="mhunt@ebi.ac.uk",
     url="https://github.com/martinghunt/travisty",
-    test_suite="nose.collector",
-    tests_require=["nose >= 1.3"],
     entry_points={"console_scripts": ["travisty = travisty.__main__:main"]},
     install_requires=["pyfastaq >= 3.14.0",],
     license="MIT",
