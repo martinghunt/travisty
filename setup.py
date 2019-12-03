@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="travisty",
     version="0.0.1",
-    description="Repo for testing out travis"
+    description="Repo for testing out travis",
     packages=find_packages(),
     author="Martin Hunt",
     author_email="mhunt@ebi.ac.uk",
@@ -12,9 +12,7 @@ setup(
     test_suite="nose.collector",
     tests_require=["nose >= 1.3"],
     entry_points={"console_scripts": ["travisty = travisty.__main__:main"]},
-    install_requires=[
-        "pyfastaq >= 3.14.0",
-    ],
+    install_requires=["pyfastaq >= 3.14.0",],
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
