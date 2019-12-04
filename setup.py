@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="travisty",
-    version="0.0.2",
+    version="0.0.3",
     description="Repo for testing out travis",
     packages=find_packages(),
     author="Martin Hunt",
