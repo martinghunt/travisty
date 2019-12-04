@@ -1,8 +1,6 @@
 from setuptools import setup, find_packages
 
 
-requires = ["pyfastaq >= 3.14.0"]
-
 setup(
     name="travisty",
     version="0.0.1",
@@ -12,8 +10,7 @@ setup(
     author_email="mhunt@ebi.ac.uk",
     url="https://github.com/martinghunt/travisty",
     entry_points={"console_scripts": ["travisty = travisty.__main__:main"]},
-    tests_require=requires,
-    install_requires=requires,
+    install_requires=["pyfastaq >= 3.14.0"],
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
