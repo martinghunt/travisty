@@ -4,5 +4,5 @@ python:
 sudo: false
 
 script:
-- python -m unittest
+- tox
 
