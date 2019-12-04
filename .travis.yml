@@ -14,5 +14,8 @@ deploy:
   provider: pypi
   user: $PYPI_USER
   password: $PYPI_PASSWORD
+  # Only deploy when a new tag is made in github
   on:
     tags: true
+  # Only send to pypi once, intead of trying for every python build
+  skip_existing: true
