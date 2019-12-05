@@ -3,8 +3,7 @@ language: python
 jobs:
   include:
     - stage: "Tests"
-      name: "Unit tests"
-    - name: "Test Python 3.6"
+      name: "Test Python 3.6"
       python: "3.6"
       env: TOXENV=py36
     - name: "Test Python 3.8"
