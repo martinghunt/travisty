@@ -26,6 +26,26 @@ jobs:
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
         - TOXENV=py38
+    - stage: before_deploy
+        - pip3 install .
+        - pip3 install pyinstaller
+        - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
+        - ls -lh build/travesty
+        - tar cvfz travesty.${TRAVIS_OS_NAME}.tar.gz build/travisty/
+    - stage: deploy
+      skip_cleanup: true
+      on:
+        - tags: true
+      - name: "Deploy macOS binary to github release"
+        provider: releases
+        user: $GITHUB_PASSWORD
+        password: $GITHUB_PASSWORD
+        on:
+          - condition: $TRAVIS_OS_NAME = osx
+        api_key: "GITHUB OAUTH TOKEN"
+        file: travesty.mac.tar.gz
+        skip_existing: true
+
 
 
 install:
@@ -33,12 +53,12 @@ install:
 
 script: tox -e $TOXENV
 
-deploy:
-  provider: pypi
-  user: $PYPI_USER
-  password: $PYPI_PASSWORD
-  # Only deploy when a new tag is made in github
-  on:
-    tags: true
-  # Only send to pypi once, intead of trying for every python build
-  skip_existing: true
+#deploy:
+#  provider: pypi
+#  user: $PYPI_USER
+#  password: $PYPI_PASSWORD
+#  # Only deploy when a new tag is made in github
+#  on:
+#    tags: true
+#  # Only send to pypi once, intead of trying for every python build
+#  skip_existing: true
