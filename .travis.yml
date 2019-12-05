@@ -46,6 +46,7 @@ deploy:
   on:
     tags: true
     condition: $TRAVIS_OS_NAME = osx
+    repo: martinghunt/travisty
   name: "Deploy macOS binary to github release"
   provider: releases
   user: $GITHUB_USER
