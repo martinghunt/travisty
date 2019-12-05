@@ -44,14 +44,13 @@ before_deploy:
 deploy:
   skip_cleanup: true
   on:
-    - tags: true
-    - condition: $TRAVIS_OS_NAME = osx
+    tags: true
+    condition: $TRAVIS_OS_NAME = osx
   name: "Deploy macOS binary to github release"
   provider: releases
   user: $GITHUB_PASSWORD
   password: $GITHUB_PASSWORD
   file: travesty.mac.tar.gz
-  skip_existing: true
 
 
 
