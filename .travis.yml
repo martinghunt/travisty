@@ -49,9 +49,9 @@ deploy:
     repo: martinghunt/travisty
   name: "Deploy macOS binary to github release"
   provider: releases
-  user: $GITHUB_USER
-  password: $GITHUB_PASSWORD
   file: travisty.${TRAVIS_OS_NAME}.tar.gz
+  api_key:
+    secure: $GITHUB_TOKEN
 
 
 
