@@ -3,12 +3,18 @@ language: python
 jobs:
   include:
     - stage: "Tests"
-      name: "Test Python 3.6"
+      name: "Test bionic Python 3.6"
+      dist: bionic
       python: "3.6"
       env: TOXENV=py36
-    - name: "Test Python 3.8"
+    - name: "Test bionic Python 3.8"
+      dist: bionic
       python: "3.8"
       env: TOXENV=py38
+    - name: "Test OSX PYthon 3.8"
+      os: osx
+      python: "3.8"
+      env TOXENV=py38
 
 install:
   pip install tox
