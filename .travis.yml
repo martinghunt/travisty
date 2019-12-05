@@ -4,10 +4,12 @@ jobs:
   include:
     - stage: "Tests"
       name: "Test bionic Python 3.6"
+      os: linux
       dist: bionic
       python: "3.6"
       env: TOXENV=py36
     - name: "Test bionic Python 3.8"
+      os: linux
       dist: bionic
       python: "3.8"
       env: TOXENV=py38
