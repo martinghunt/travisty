@@ -52,7 +52,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      condition: $TRAVIS_OS_NAME IN (osx, windows)
+      condition: os IN (osx, windows)
       repo: martinghunt/travisty
     file: travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
     api_key:
