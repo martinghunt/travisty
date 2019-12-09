@@ -34,7 +34,7 @@ jobs:
         - TOXENV=py38
       before_deploy:
         - pip3 install .
-        - pip3 install pyinstaller
+        - pip3 install pyinstaller pypiwin32
         - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
         - ls -lh build/travisty
         - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
