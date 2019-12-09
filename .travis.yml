@@ -47,7 +47,6 @@ deploy:
     tags: true
     condition: $TRAVIS_OS_NAME = osx
     repo: martinghunt/travisty
-  name: "Deploy macOS binary to github release"
   provider: releases
   file: travisty.${TRAVIS_OS_NAME}.tar.gz
   api_key:
