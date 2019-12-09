@@ -1,5 +1,12 @@
 language: python # this works for Linux but is an error on macOS or Windows
 
+
+stages:
+  - name: Tests
+  - name: Deploy
+    if: os in (osx, windows)
+
+
 jobs:
   include:
     - stage: "Tests"
