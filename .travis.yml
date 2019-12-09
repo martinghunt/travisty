@@ -32,25 +32,25 @@ install:
 
 script: tox -e $TOXENV
 
-before_deploy:
-  - pip3 install .
-  - pip3 install pyinstaller
-  - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
-  - ls -lh build/travisty
-  - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
 
 
 
 deploy:
-  skip_cleanup: true
-  on:
-    tags: true
-    condition: $TRAVIS_OS_NAME = osx
-    repo: martinghunt/travisty
-  provider: releases
-  file: travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
-  api_key:
-    secure: "Gibi/yV7KRRs1Ost1upvloXkUdcs9z7V6GNV/9mnVqxFr0CPSd9Vu2BolnFo1Op4BbrCaSOBBAXQ7TljHvQfGc+fz2ITnOd4ZqkHtZsstJUJqKMDOqZy1HFyY9mtdRUv71zZmf82qNHueGluguAvBrBHnMLjA97U4CQOiYZKMDjcLe9LXNe4q2NtrmmmGevFN92zJKJBXfFY0J6jld0zONHGTKL5X/h3R20PZnFvoi8HnYTMi1hrviFD+zCz2dIqrxPjyrctQ3/YHBIwJKtw1zfNKCcdAFV4N/KSjMnl7eIXnV/8CFfZyPHJXY10nnhKMROJmvC7sAo7a6bkjrOJii38NukImP3x3ji1Z9/v57qNclKYXve6EZ/yL9CeVDNRIRRU7Rqf/IE9VhF9DTcxkzlybnw0NbqJOv4awzr6F+yNmvM9GY51J6tH/tt7Af2KyfpLLkhAc4bs6hJbuXLw1WiKPlnTV0SXqEgJcuhWNy4GYT4OmM+Hgp1Z2hqE+OgUIYGp+sgJmf9Q0F/mQN4VCQqBWjvVaa4HZjCBq+OVaOXBke7Bpievcrdw6pnToFCns59+psRCvaM/lNQLT+Vv2iVdq53tnfn5Sm6Kc2nvg1mUOuV0qTpCNjq7dW02nCkEq24dOVvhQ3t4EA5dKAVatmCsw+Hxoxm1LifUnAhhdt0="
+  - provider: releases
+    before_deploy:
+      - pip3 install .
+      - pip3 install pyinstaller
+      - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
+      - ls -lh build/travisty
+      - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: $TRAVIS_OS_NAME = osx
+      repo: martinghunt/travisty
+    file: travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
+    api_key:
+      secure: "Gibi/yV7KRRs1Ost1upvloXkUdcs9z7V6GNV/9mnVqxFr0CPSd9Vu2BolnFo1Op4BbrCaSOBBAXQ7TljHvQfGc+fz2ITnOd4ZqkHtZsstJUJqKMDOqZy1HFyY9mtdRUv71zZmf82qNHueGluguAvBrBHnMLjA97U4CQOiYZKMDjcLe9LXNe4q2NtrmmmGevFN92zJKJBXfFY0J6jld0zONHGTKL5X/h3R20PZnFvoi8HnYTMi1hrviFD+zCz2dIqrxPjyrctQ3/YHBIwJKtw1zfNKCcdAFV4N/KSjMnl7eIXnV/8CFfZyPHJXY10nnhKMROJmvC7sAo7a6bkjrOJii38NukImP3x3ji1Z9/v57qNclKYXve6EZ/yL9CeVDNRIRRU7Rqf/IE9VhF9DTcxkzlybnw0NbqJOv4awzr6F+yNmvM9GY51J6tH/tt7Af2KyfpLLkhAc4bs6hJbuXLw1WiKPlnTV0SXqEgJcuhWNy4GYT4OmM+Hgp1Z2hqE+OgUIYGp+sgJmf9Q0F/mQN4VCQqBWjvVaa4HZjCBq+OVaOXBke7Bpievcrdw6pnToFCns59+psRCvaM/lNQLT+Vv2iVdq53tnfn5Sm6Kc2nvg1mUOuV0qTpCNjq7dW02nCkEq24dOVvhQ3t4EA5dKAVatmCsw+Hxoxm1LifUnAhhdt0="
 
 
 
