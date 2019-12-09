@@ -24,12 +24,11 @@ jobs:
       language: shell # 'language: python' is an error on Travis CI macOS
       env:
         - TOXENV=py3
-        - GITHUB_RELEASE_FILE = travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
       before_deploy:
         - pip3 install .
         - pip3 install pyinstaller
         - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
-        - tar cvfz $GITHUB_RELEASE_FILE build/travisty/
+        - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
     - name: "Test Windows Python 3.8.0"
       os: windows
       language: shell # 'language: python' is an error on Travis CI Windows
@@ -39,13 +38,12 @@ jobs:
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
         - TOXENV=py38
-        - GITHUB_RELEASE_FILE = travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
       before_deploy:
         - pip3 install .
         - pip3 install pypiwin32
         - pip3 install https://github.com/pyinstaller/pyinstaller/archive/develop.tar.gz # release doesn't work. See https://github.com/pyinstaller/pyinstaller/issues/4265
         - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
-        - tar cvfz $GITHUB_RELEASE_FILE build/travisty/
+        - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
 
 install:
   pip install tox
