@@ -2,14 +2,14 @@ language: python # this works for Linux but is an error on macOS or Windows
 
 
 stages:
-  - name: Tests
-  - name: Deploy
+  - name: test
+  - name: deploy
     if: tag IS present
 
 
 jobs:
   include:
-    - stage: "Tests"
+    - stage: "tests"
       name: "Test bionic Python 3.6"
       os: linux
       dist: bionic
@@ -44,7 +44,7 @@ jobs:
         - pip3 install https://github.com/pyinstaller/pyinstaller/archive/develop.tar.gz # release doesn't work. See https://github.com/pyinstaller/pyinstaller/issues/4265
         - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
         - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
-    - stage: Deploy
+    - stage: deploy
       script: skip
       deploy:
         provider: releases
