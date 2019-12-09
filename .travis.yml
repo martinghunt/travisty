@@ -6,6 +6,10 @@ stages:
   - name: deploy
     if: tag IS present
 
+os:
+  - linux
+  - windows
+  - osx
 
 jobs:
   include:
