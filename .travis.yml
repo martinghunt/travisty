@@ -45,6 +45,7 @@ jobs:
         - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
         - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
     - stage: Deploy
+      script: skip
       deploy:
         provider: releases
         skip_cleanup: true
