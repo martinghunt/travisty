@@ -32,6 +32,12 @@ jobs:
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
         - TOXENV=py38
+      before_deploy:
+        - pip3 install .
+        - pip3 install pyinstaller
+        - pyinstaller --additional-hooks-dir=pyinstaller_hooks/ travisty/__main__.py  --name travisty --workpath=build/pyinstaller_work --distpath=build
+        - ls -lh build/travisty
+        - tar cvfz travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz build/travisty/
 
 install:
   pip install tox
@@ -46,7 +52,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      condition: $TRAVIS_OS_NAME = osx
+      condition: $TRAVIS_OS_NAME IN (osx, windows)
       repo: martinghunt/travisty
     file: travisty.${TRAVIS_OS_NAME}.${TRAVIS_TAG}.tar.gz
     api_key:
