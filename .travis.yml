@@ -9,7 +9,7 @@ stages:
 
 jobs:
   include:
-    - stage: "tests"
+    - stage: test
       name: "Test bionic Python 3.6"
       os: linux
       dist: bionic
